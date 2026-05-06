@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NPPW VA Examination | Mission Control</title>
-  <meta name="description" content="Interactive NPPW VA Examination with 90 questions, advanced review flow, submission." />
+  <meta name="description" content="Interactive NPPW VA Examination with 90 questions, advanced review flow, and direct Supabase submission." />
   <style>
     :root{
       --bg:#07111f;
@@ -455,7 +455,7 @@
           </div>
           <div class="badge-row">
             <span class="badge" id="autosaveStatus">Autosave: ready</span>
-            <span class="badge" id="submissionStatus">Submit mode: Netlify + Supabase ready</span>
+            <span class="badge" id="submissionStatus">Submit mode: waiting for Supabase config</span>
           </div>
         </div>
 
@@ -493,7 +493,7 @@
           <p>
             This upgraded examination checks business understanding, systems usage, verification habits, escalation discipline,
             communication quality, and reporting judgment. It includes autosave, flagging, live heatmap navigation,
-            review before submit, and deploy-ready Netlify + Supabase submission support.
+            review before submit, and direct Supabase submission support.
           </p>
           <div class="hero-grid">
             <div class="hero-card mini-card">
@@ -526,7 +526,7 @@
                 </div>
               </div>
               <p class="small-note" style="margin-top:14px">
-                The exam works will identify your accuracy and judgement.
+                This version connects directly from the browser to Supabase using your public project URL and public API key.
               </p>
             </div>
           </div>
@@ -539,7 +539,7 @@
                 <div class="section-title">Start the examination</div>
                 <h3 style="font-size:1.5rem; margin-bottom:10px">Enter the trainee information first</h3>
                 <p class="small-note">
-                  The exam will save progress locally in the browser.
+                  The exam will save progress locally in the browser and will submit results directly to Supabase when your config is added below.
                 </p>
                 <div class="form-grid" style="margin-top:18px">
                   <div class="field">
@@ -574,10 +574,10 @@
                   <div class="check-item"><span class="check-icon">1</span><span>Animated mission-control interface with live progress ring and heatmap.</span></div>
                   <div class="check-item"><span class="check-icon">2</span><span>Question flagging, quick jump navigation, review screen, and category accuracy cards.</span></div>
                   <div class="check-item"><span class="check-icon">3</span><span>Automatic save and recovery, print-ready results, and answer explanations.</span></div>
-                  <div class="check-item"><span class="check-icon">4</span><span>Netlify Function for secure server-side Supabase submission, plus Netlify Forms backup.</span></div>
+                  <div class="check-item"><span class="check-icon">4</span><span>Direct browser-to-Supabase submission using your public project URL and public API key.</span></div>
                 </div>
                 <div class="footer-note">
-                  Tip: Read it carefully.
+                  Tip: paste your Supabase URL and public API key into the config block near the bottom of this file before deploying.
                 </div>
               </div>
             </div>
@@ -671,11 +671,2136 @@
   <script>
     window.SUPABASE_CONFIG = {
       url: "https://jaonzawmfwrikiebhlxa.supabase.co",
-      anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imphb256YXdtZndyaWtpZWJobHhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NzU0NjQsImV4cCI6MjA5MzA1MTQ2NH0.D5XZkNNGaJ_gLHQt5VmzZ8waFKdI29lL-yu3UGRgHz4"
+      key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imphb256YXdtZndyaWtpZWJobHhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NzU0NjQsImV4cCI6MjA5MzA1MTQ2NH0.D5XZkNNGaJ_gLHQt5VmzZ8waFKdI29lL-yu3UGRgHz4"
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./assets/js/question-bank.js"></script>
-  <script src="./assets/js/app.js"></script>
+  <script>
+window.NPPW_QUESTIONS = [
+  {
+    "id": 1,
+    "category": "Business & Services",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the main industry of NPPW Services?",
+    "options": [
+      "Food delivery",
+      "Property maintenance",
+      "IT services",
+      "Retail sales"
+    ],
+    "answer": 1,
+    "explanation": "NPPW operates in property maintenance and cleaning services, not retail, food delivery, or IT."
+  },
+  {
+    "id": 2,
+    "category": "Business & Services",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the main purpose of NPPW Services?",
+    "options": [
+      "Sell construction materials",
+      "Provide property maintenance and cleaning services",
+      "Manage real estate sales",
+      "Offer security services"
+    ],
+    "answer": 1,
+    "explanation": "The company’s role is to provide maintenance and cleaning solutions for properties."
+  },
+  {
+    "id": 3,
+    "category": "Business & Services",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "When was NPPW Services established according to the source quiz?",
+    "options": [
+      "2010",
+      "2012",
+      "2014",
+      "2018"
+    ],
+    "answer": 1,
+    "explanation": "The uploaded NPPW quiz identifies 2012 as the establishment year."
+  },
+  {
+    "id": 4,
+    "category": "Business & Services",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which service uses high-pressure water cleaning?",
+    "options": [
+      "Soft washing",
+      "Landscaping",
+      "Pressure washing",
+      "Janitorial service"
+    ],
+    "answer": 2,
+    "explanation": "Pressure washing uses high-pressure water for hard surfaces and heavy buildup."
+  },
+  {
+    "id": 5,
+    "category": "Business & Services",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Soft washing is best used for which type of surface?",
+    "options": [
+      "Heavy machinery",
+      "Delicate surfaces like roofs",
+      "Parking lots only",
+      "Indoor floors"
+    ],
+    "answer": 1,
+    "explanation": "Soft washing uses lower pressure and is safer for delicate exterior surfaces."
+  },
+  {
+    "id": 6,
+    "category": "Business & Services",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which service focuses on outdoor plant care and lawn maintenance?",
+    "options": [
+      "Janitorial",
+      "Landscaping",
+      "Disinfection",
+      "Sweeping"
+    ],
+    "answer": 1,
+    "explanation": "Landscaping covers lawn care, plant maintenance, and outdoor appearance."
+  },
+  {
+    "id": 7,
+    "category": "Business & Services",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What does parking lot sweeping mainly remove?",
+    "options": [
+      "Paint stains",
+      "Trash and debris",
+      "Furniture",
+      "Tree branches only"
+    ],
+    "answer": 1,
+    "explanation": "Parking lot sweeping is intended to remove debris and litter from exterior paved areas."
+  },
+  {
+    "id": 8,
+    "category": "Business & Services",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is construction cleanup?",
+    "options": [
+      "Cleaning homes daily",
+      "Cleaning after building projects",
+      "Repairing buildings",
+      "Painting structures"
+    ],
+    "answer": 1,
+    "explanation": "Construction cleanup happens after building or renovation work."
+  },
+  {
+    "id": 9,
+    "category": "Business & Services",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What does the 'one-stop shop' advantage mean for NPPW clients?",
+    "options": [
+      "They need different vendors for every task",
+      "They can use one provider for multiple maintenance needs",
+      "They only receive pressure washing",
+      "They must sign a yearly franchise contract"
+    ],
+    "answer": 1,
+    "explanation": "A one-stop shop reduces coordination by letting clients source several services from one provider."
+  },
+  {
+    "id": 10,
+    "category": "Business & Services",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which business model best fits NPPW based on the source material?",
+    "options": [
+      "One-time retail sales",
+      "Subscription gaming model",
+      "Recurring maintenance contracts",
+      "Freelance consulting"
+    ],
+    "answer": 2,
+    "explanation": "The business relies heavily on recurring service contracts and repeat maintenance work."
+  },
+  {
+    "id": 11,
+    "category": "Business & Services",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which statement best describes NPPW’s typical client environment?",
+    "options": [
+      "Mostly gaming arcades",
+      "Commercial properties and retail locations",
+      "University dorm kitchens only",
+      "Private aircraft hangars only"
+    ],
+    "answer": 1,
+    "explanation": "The training materials and workflow context focus on commercial properties and national retail sites."
+  },
+  {
+    "id": 12,
+    "category": "Business & Services",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Why are recurring service contracts important to the business?",
+    "options": [
+      "They remove the need for scheduling",
+      "They create predictable ongoing work and client retention",
+      "They stop clients from requesting emergencies",
+      "They replace all reporting"
+    ],
+    "answer": 1,
+    "explanation": "Recurring work creates predictable operational volume and repeat revenue."
+  },
+  {
+    "id": 13,
+    "category": "Business & Services",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which service would most likely be chosen for oily, stained concrete at an exterior entry?",
+    "options": [
+      "Soft washing only",
+      "Pressure washing",
+      "Carpet shampooing",
+      "Indoor dusting"
+    ],
+    "answer": 1,
+    "explanation": "Hard exterior surfaces with heavy buildup are better suited to pressure washing."
+  },
+  {
+    "id": 14,
+    "category": "Business & Services",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which service is most appropriate when the goal is sanitation and health-safety support?",
+    "options": [
+      "Disinfection services",
+      "Landscaping only",
+      "Parking striping only",
+      "Google Sheets updates"
+    ],
+    "answer": 0,
+    "explanation": "Disinfection addresses sanitation-related needs and health-safety concerns."
+  },
+  {
+    "id": 15,
+    "category": "Business & Services",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "Why is matching the correct service type to the surface important?",
+    "options": [
+      "Because every service uses the same method",
+      "Because the wrong method can damage surfaces or fail to solve the issue",
+      "Because vendors prefer longer notes",
+      "Because it avoids taking photos"
+    ],
+    "answer": 1,
+    "explanation": "Service selection matters because pressure, chemicals, and scope must fit the surface and issue."
+  },
+  {
+    "id": 16,
+    "category": "Business & Services",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "A client wants exterior curb appeal, cleaner walkways, and maintained greenery from one vendor. What business strength is being used?",
+    "options": [
+      "A narrow single-service model",
+      "The one-stop shop service model",
+      "A no-communication model",
+      "A residential-only package"
+    ],
+    "answer": 1,
+    "explanation": "That request uses NPPW’s strength as a provider with multiple maintenance offerings."
+  },
+  {
+    "id": 17,
+    "category": "Business & Services",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: Landscaping includes lawn and tree maintenance.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 0,
+    "explanation": "The source quiz marks this statement as true."
+  },
+  {
+    "id": 18,
+    "category": "Business & Services",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: NPPW only provides indoor cleaning services.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 1,
+    "explanation": "The source quiz marks this statement as false because NPPW also handles exterior and site services."
+  },
+  {
+    "id": 19,
+    "category": "Tools & Systems",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the primary function of Acuity Scheduling in VA operations?",
+    "options": [
+      "Managing job completion photos",
+      "Organizing and managing appointments",
+      "Tracking technician GPS only",
+      "Generating invoices"
+    ],
+    "answer": 1,
+    "explanation": "The source questionnaire identifies Acuity as the scheduling and appointment tool."
+  },
+  {
+    "id": 20,
+    "category": "Tools & Systems",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which tool is mainly used to track job progress from start to finish?",
+    "options": [
+      "Acuity Scheduling",
+      "Google Sheets",
+      "Jobber",
+      "Google Maps"
+    ],
+    "answer": 2,
+    "explanation": "Jobber is the main work-order management system used to move jobs through execution."
+  },
+  {
+    "id": 21,
+    "category": "Tools & Systems",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is a key purpose of Google Maps in VA operations?",
+    "options": [
+      "Recording job completion notes",
+      "Planning efficient routes between locations",
+      "Creating invoices",
+      "Storing legal documents"
+    ],
+    "answer": 1,
+    "explanation": "Google Maps helps support routing, travel checks, and density planning."
+  },
+  {
+    "id": 22,
+    "category": "Tools & Systems",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which tool is best for maintaining and updating operational trackers?",
+    "options": [
+      "Jobber",
+      "Acuity Scheduling",
+      "Google Sheets",
+      "Google Maps"
+    ],
+    "answer": 2,
+    "explanation": "Sheets is used for trackers, logs, and reporting support."
+  },
+  {
+    "id": 23,
+    "category": "Tools & Systems",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the main role of email in VA tasks?",
+    "options": [
+      "Assigning jobs automatically",
+      "Sending and receiving updates and communication",
+      "Replacing all phone calls",
+      "Tracking GPS"
+    ],
+    "answer": 1,
+    "explanation": "Email is primarily for written communication and updates."
+  },
+  {
+    "id": 24,
+    "category": "Tools & Systems",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which tool helps prevent double-booking of appointments?",
+    "options": [
+      "Jobber",
+      "Google Maps",
+      "Acuity Scheduling",
+      "Google Sheets"
+    ],
+    "answer": 2,
+    "explanation": "Acuity is the scheduling layer used to manage bookings and availability."
+  },
+  {
+    "id": 25,
+    "category": "Tools & Systems",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the primary use of Jobber for VAs?",
+    "options": [
+      "Route navigation",
+      "Appointment reminders only",
+      "Job and work order management",
+      "Spreadsheet reporting"
+    ],
+    "answer": 2,
+    "explanation": "Jobber handles job management and internal operational execution."
+  },
+  {
+    "id": 26,
+    "category": "Tools & Systems",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Why is Google Maps important for route density?",
+    "options": [
+      "It stores invoices",
+      "It tracks employee attendance",
+      "It helps minimize travel time between jobs",
+      "It sends email reminders"
+    ],
+    "answer": 2,
+    "explanation": "Maps helps assess travel and route efficiency between job sites."
+  },
+  {
+    "id": 27,
+    "category": "Tools & Systems",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which tool is most appropriate for tracking delays and pending jobs in an organized list?",
+    "options": [
+      "Email",
+      "Google Sheets",
+      "Google Maps",
+      "Acuity Scheduling"
+    ],
+    "answer": 1,
+    "explanation": "Sheets is best for visible tracker-style monitoring of delays and pendings."
+  },
+  {
+    "id": 28,
+    "category": "Tools & Systems",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the purpose of using phone communication in VA roles?",
+    "options": [
+      "Creating job reports",
+      "Handling urgent issues and real-time coordination",
+      "Replacing ServiceChannel",
+      "Building spreadsheets"
+    ],
+    "answer": 1,
+    "explanation": "Phone is used when speed and live clarification matter."
+  },
+  {
+    "id": 29,
+    "category": "Tools & Systems",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which system acts as the 'engine' for internal dispatching, labor tracking, and invoicing in the source training?",
+    "options": [
+      "ServiceChannel",
+      "Acuity",
+      "Jobber",
+      "Slack"
+    ],
+    "answer": 2,
+    "explanation": "The source questions describe Jobber as the internal engine for dispatch, labor, and invoicing."
+  },
+  {
+    "id": 30,
+    "category": "Tools & Systems",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Why must a VA check Acuity before confirming an emergency cleanup in ServiceChannel?",
+    "options": [
+      "To see if the client paid",
+      "To check real-time availability and avoid over-promising technicians",
+      "To upload photos",
+      "To close the work order"
+    ],
+    "answer": 1,
+    "explanation": "Checking availability first prevents promising a resource that is not actually open."
+  },
+  {
+    "id": 31,
+    "category": "Tools & Systems",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is the 'Check-First' rule for duplicate entries?",
+    "options": [
+      "Check uniform color",
+      "Check store ID and date before entering a new request",
+      "Check if a manager is on vacation",
+      "Check fuel receipts"
+    ],
+    "answer": 1,
+    "explanation": "Store ID plus date is the basic duplicate-control check mentioned in training."
+  },
+  {
+    "id": 32,
+    "category": "Tools & Systems",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "In vendor assignment logic, what happens if the Position 1 vendor does not accept within the expected window?",
+    "options": [
+      "The job is deleted",
+      "The price doubles automatically",
+      "The job moves to the Position 2 vendor",
+      "The VA closes the ticket"
+    ],
+    "answer": 2,
+    "explanation": "The source scenario states the job advances to the next vendor in the position sequence."
+  },
+  {
+    "id": 33,
+    "category": "Tools & Systems",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "Which statement best explains the relationship between ServiceChannel and Jobber in the workflow?",
+    "options": [
+      "Both are only map tools",
+      "ServiceChannel manages client-facing work orders while Jobber supports internal execution and dispatch",
+      "Jobber replaces all client communication and ServiceChannel is unused",
+      "They are both only spreadsheets"
+    ],
+    "answer": 1,
+    "explanation": "The training context separates client/work-order coordination from internal dispatching and operational handling."
+  },
+  {
+    "id": 34,
+    "category": "Tools & Systems",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "A request appears in ServiceChannel, but Acuity shows no available slot and the area is already dense. What is the best next step?",
+    "options": [
+      "Confirm it anyway to satisfy the client fast",
+      "Escalate or coordinate for availability before promising service",
+      "Mark complete",
+      "Delete the request"
+    ],
+    "answer": 1,
+    "explanation": "Availability should be verified before confirming work that operations may not be able to cover."
+  },
+  {
+    "id": 35,
+    "category": "Tools & Systems",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: Email and phone are both communication tools commonly used by NPPW VAs.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 0,
+    "explanation": "The tools questionnaire identifies email and phone as communication tools."
+  },
+  {
+    "id": 36,
+    "category": "Tools & Systems",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: Google Maps is primarily used to create invoices for clients.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 1,
+    "explanation": "That statement is false; maps supports route planning and travel review."
+  },
+  {
+    "id": 37,
+    "category": "Verification & Quality Control",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "If a store is scheduled for floor waxing at 10:00 PM but the mall closes at 9:00 PM, what should the VA do?",
+    "options": [
+      "Approve it and wait",
+      "Flag the start time as a likely error before arrival",
+      "Change the time without notice",
+      "Wait for a lockout"
+    ],
+    "answer": 1,
+    "explanation": "The issue should be caught before dispatch or arrival because the schedule conflicts with access."
+  },
+  {
+    "id": 38,
+    "category": "Verification & Quality Control",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "While checking an after photo, you still see tape residue on the cleaned door. What is the correct protocol?",
+    "options": [
+      "Approve because most of it looks fine",
+      "Ask the store manager to remove it",
+      "Message the cleaner to remove it before leaving",
+      "Delete the photo"
+    ],
+    "answer": 2,
+    "explanation": "The cleaner should correct the remaining issue before leaving the site."
+  },
+  {
+    "id": 39,
+    "category": "Verification & Quality Control",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the purpose of the Double-Check Protocol system?",
+    "options": [
+      "Make VAs work twice as fast",
+      "Prevent autopilot thinking through a second internal verification step",
+      "Allow duplicate billing",
+      "Require two VAs on every ticket"
+    ],
+    "answer": 1,
+    "explanation": "Its purpose is accuracy through an intentional second look."
+  },
+  {
+    "id": 40,
+    "category": "Verification & Quality Control",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "A vendor marks a 50,000 sq. ft. floor scrub complete in 15 minutes. Why should this be flagged?",
+    "options": [
+      "Because they forgot to invoice",
+      "Because the timeframe is physically unrealistic for that scope",
+      "Because 15 minutes is always the target",
+      "Because all jobs must take 2 hours"
+    ],
+    "answer": 1,
+    "explanation": "This is a time-on-site validation issue because the reported duration does not fit the scope."
+  },
+  {
+    "id": 41,
+    "category": "Verification & Quality Control",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is a red flag during photo compliance checks?",
+    "options": [
+      "A clean wide-angle image",
+      "A visible date stamp from today",
+      "Multiple photos with the exact same timestamp",
+      "A clear close-up of the cleaned area"
+    ],
+    "answer": 2,
+    "explanation": "Repeated identical timestamps across all images can suggest non-compliant documentation."
+  },
+  {
+    "id": 42,
+    "category": "Verification & Quality Control",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Why must a VA compare before and after photos instead of looking only at the final image?",
+    "options": [
+      "Because final images are always blurry",
+      "Because the comparison confirms the actual improvement and whether the scope was completed",
+      "Because clients dislike final photos",
+      "Because before photos are only for decoration"
+    ],
+    "answer": 1,
+    "explanation": "Before/after comparison helps validate that the work addressed the reported issue."
+  },
+  {
+    "id": 43,
+    "category": "Verification & Quality Control",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What should a VA do if the after photo is too dark to verify the cleaned area clearly?",
+    "options": [
+      "Approve it because a photo exists",
+      "Request clearer supporting photos before closing validation",
+      "Crop the image and guess",
+      "Delete the ticket"
+    ],
+    "answer": 1,
+    "explanation": "Evidence must be clear enough to support completion."
+  },
+  {
+    "id": 44,
+    "category": "Verification & Quality Control",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "If the check-in and checkout times look inconsistent with travel distance and scope, what should the VA review first?",
+    "options": [
+      "The cleaner’s shoe color",
+      "Time-on-site reasonableness and supporting notes",
+      "Google logo color",
+      "The weekly trend report only"
+    ],
+    "answer": 1,
+    "explanation": "The immediate verification step is to validate whether the timeline is plausible."
+  },
+  {
+    "id": 45,
+    "category": "Verification & Quality Control",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which is the best reason to hold approval when required site photos are missing?",
+    "options": [
+      "Because photo counts look ugly",
+      "Because evidence is needed to support completion, client visibility, and billing confidence",
+      "Because VAs prefer longer tickets",
+      "Because photos are optional"
+    ],
+    "answer": 1,
+    "explanation": "Missing evidence affects validation and can create downstream billing or client issues."
+  },
+  {
+    "id": 46,
+    "category": "Verification & Quality Control",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "A vendor uploads the same angle repeatedly but avoids the problem area. What should the VA conclude?",
+    "options": [
+      "The job is automatically perfect",
+      "Photo coverage may be incomplete and needs follow-up",
+      "More angles means faster approval",
+      "The store manager already approved it"
+    ],
+    "answer": 1,
+    "explanation": "Incomplete coverage is a quality-control problem because it can hide an unaddressed area."
+  },
+  {
+    "id": 47,
+    "category": "Verification & Quality Control",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "What is the strongest reason for validating a job against realistic production time?",
+    "options": [
+      "To criticize vendors",
+      "To identify impossible claims, protect accuracy, and avoid false completion approval",
+      "To increase report length",
+      "To reduce communication"
+    ],
+    "answer": 1,
+    "explanation": "Reasonable duration checks help stop false or questionable completions from being approved."
+  },
+  {
+    "id": 48,
+    "category": "Verification & Quality Control",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "A cleaner says the job is complete, but the before photo shows gum on three panels and the after photos only show one clean panel. What is the best action?",
+    "options": [
+      "Approve and move on",
+      "Request full after coverage for all impacted areas before validation",
+      "Only save the best photo",
+      "Bill immediately"
+    ],
+    "answer": 1,
+    "explanation": "Validation requires evidence that the full scope—not just one section—was completed."
+  },
+  {
+    "id": 49,
+    "category": "Verification & Quality Control",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What should be verified first when an after photo looks clean but the timestamps are from the previous day?",
+    "options": [
+      "Ignore it if the floor looks good",
+      "Confirm whether the photos match the actual service date and ticket",
+      "Send a thank-you email",
+      "Change the due date"
+    ],
+    "answer": 1,
+    "explanation": "The evidence must match the job date and work event being reviewed."
+  },
+  {
+    "id": 50,
+    "category": "Verification & Quality Control",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Why is a small unresolved issue still important during QA review?",
+    "options": [
+      "Because every small miss can affect client confidence and signal incomplete work",
+      "Because it always causes legal action",
+      "Because it changes the company name",
+      "Because only large defects matter"
+    ],
+    "answer": 0,
+    "explanation": "Attention to detail is part of quality control, especially when the job is being validated from evidence."
+  },
+  {
+    "id": 51,
+    "category": "Verification & Quality Control",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "When validating work, what is the best order of review?",
+    "options": [
+      "Approve first, investigate later",
+      "Scope, timing, notes, and photo evidence together",
+      "Only look at who submitted it",
+      "Only review the invoice amount"
+    ],
+    "answer": 1,
+    "explanation": "Strong validation combines scope, time, documentation, and visual proof."
+  },
+  {
+    "id": 52,
+    "category": "Verification & Quality Control",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: Multiple photos with exactly the same timestamp can be a photo-compliance red flag.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 0,
+    "explanation": "The source questions explicitly identify this as a red flag."
+  },
+  {
+    "id": 53,
+    "category": "Verification & Quality Control",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: The Double-Check Protocol is meant to reduce verification quality so tickets close faster.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 1,
+    "explanation": "False. It exists to improve accuracy and prevent autopilot reviewing."
+  },
+  {
+    "id": 54,
+    "category": "Verification & Quality Control",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: If the after photo still shows remaining residue, the VA can still approve as long as most of the glass looks clean.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 1,
+    "explanation": "False. The remaining issue should be corrected before final approval."
+  },
+  {
+    "id": 55,
+    "category": "Communication & Escalation",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "When a vendor reports they are stuck in traffic, what is the professional way to document it?",
+    "options": [
+      "'The technician is late.'",
+      "'Per phone call with Vendor [Name] at 02:15 PM: Delayed by traffic; New ETA 03:30 PM.'",
+      "'Talked to the guy, coming later.'",
+      "Do not document it"
+    ],
+    "answer": 1,
+    "explanation": "Professional notes should include the source, time, and revised ETA."
+  },
+  {
+    "id": 56,
+    "category": "Communication & Escalation",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is a warm transfer in the context of escalation?",
+    "options": [
+      "Transfer without speaking",
+      "Hang up first and call later",
+      "Brief the manager before connecting the caller",
+      "Keep the caller on hold for 10 minutes"
+    ],
+    "answer": 2,
+    "explanation": "A warm transfer includes context handoff before the caller is connected."
+  },
+  {
+    "id": 57,
+    "category": "Communication & Escalation",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which trigger words require immediate escalation to a manager?",
+    "options": [
+      "'Floor looks shiny'",
+      "'Safety hazard,' 'Refusal of entry,' or 'Media/Legal'",
+      "'Routine maintenance'",
+      "'Thank you'"
+    ],
+    "answer": 1,
+    "explanation": "Those terms indicate risk or sensitive situations that should be escalated immediately."
+  },
+  {
+    "id": 58,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Why is professional documentation important during delays or issues?",
+    "options": [
+      "It makes the note longer",
+      "It creates a clear record of what happened, who said it, and when",
+      "It replaces operations",
+      "It avoids all follow-up"
+    ],
+    "answer": 1,
+    "explanation": "Clear documentation protects continuity and supports accurate follow-up."
+  },
+  {
+    "id": 59,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "A store manager says the cleaner was refused entry by security. What is the best first step?",
+    "options": [
+      "Close the ticket as completed",
+      "Document the refusal clearly and escalate according to protocol",
+      "Delete the photos",
+      "Tell the cleaner to leave without record"
+    ],
+    "answer": 1,
+    "explanation": "Refusal of entry is an escalation situation that needs complete documentation."
+  },
+  {
+    "id": 60,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which note is better for a client-facing system?",
+    "options": [
+      "'Vendor messed up again.'",
+      "'Per store contact at 08:40 PM, access was denied due to after-hours policy. Escalated for next-step direction.'",
+      "'Bad issue lol.'",
+      "No note is needed"
+    ],
+    "answer": 1,
+    "explanation": "Professional notes are factual, neutral, and specific."
+  },
+  {
+    "id": 61,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "If a vendor gives a new ETA by phone, what details should be included in the note?",
+    "options": [
+      "Only the word 'late'",
+      "Who called, when they called, reason for delay, and new ETA",
+      "Only the store number",
+      "Only the vendor company name"
+    ],
+    "answer": 1,
+    "explanation": "A usable operations note should capture the source, time, reason, and revised expectation."
+  },
+  {
+    "id": 62,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Why should escalations use neutral language instead of emotional wording?",
+    "options": [
+      "Because emotional wording increases accuracy",
+      "Because neutral wording keeps the record professional and easier to act on",
+      "Because the system blocks adjectives",
+      "Because managers prefer slang"
+    ],
+    "answer": 1,
+    "explanation": "Neutral language keeps records professional and operationally useful."
+  },
+  {
+    "id": 63,
+    "category": "Communication & Escalation",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "A caller mentions a possible injury on site during service. What should the VA do?",
+    "options": [
+      "Wait until weekly reporting",
+      "Treat it as urgent, document facts, and escalate immediately",
+      "Ask for photos first and do nothing else",
+      "Close the ticket"
+    ],
+    "answer": 1,
+    "explanation": "Anything involving safety or injury is urgent and should follow immediate escalation."
+  },
+  {
+    "id": 64,
+    "category": "Communication & Escalation",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "A vendor misses the first check-in, then sends a casual text saying they are already working. What is the best VA response?",
+    "options": [
+      "Ignore the missing check-in",
+      "Request proper documentation and update the record professionally while following protocol",
+      "Mark the job complete",
+      "Tell them not to worry"
+    ],
+    "answer": 1,
+    "explanation": "Missing formal documentation still matters even when informal contact exists."
+  },
+  {
+    "id": 65,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is the main benefit of a warm transfer during a tense issue?",
+    "options": [
+      "The customer repeats the full story again",
+      "The receiving manager gets context before speaking, reducing confusion",
+      "It ends the issue automatically",
+      "It avoids documentation"
+    ],
+    "answer": 1,
+    "explanation": "Warm transfers reduce friction and improve escalation quality."
+  },
+  {
+    "id": 66,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "If a client asks for an update and the latest status is still being verified, what is the best response style?",
+    "options": [
+      "Make up a completion time",
+      "Give a factual status update and promise the next confirmed update when available",
+      "Ignore the message",
+      "Blame the vendor"
+    ],
+    "answer": 1,
+    "explanation": "Updates should stay factual and should not promise unverified information."
+  },
+  {
+    "id": 67,
+    "category": "Communication & Escalation",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "What is the best communication principle when facts are incomplete?",
+    "options": [
+      "Assume the best outcome and report it as fact",
+      "Separate confirmed facts from pending verification",
+      "Avoid all replies",
+      "Only use phone, never notes"
+    ],
+    "answer": 1,
+    "explanation": "Strong communication distinguishes confirmed facts from items still being checked."
+  },
+  {
+    "id": 68,
+    "category": "Communication & Escalation",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "Why is escalation timing important?",
+    "options": [
+      "Because long delays can increase operational and client risk",
+      "Because it increases the number of notes",
+      "Because the system requires colorful text",
+      "Because delays make reports shorter"
+    ],
+    "answer": 0,
+    "explanation": "Delayed escalation can worsen service, site, or client risks."
+  },
+  {
+    "id": 69,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: 'Safety hazard' is an example of a trigger phrase that should be escalated immediately.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 0,
+    "explanation": "The source questions list safety hazard as an immediate escalation trigger."
+  },
+  {
+    "id": 70,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: A warm transfer means handing off the caller without briefing the manager.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 1,
+    "explanation": "False. A warm transfer includes briefing the receiver first."
+  },
+  {
+    "id": 71,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: Professional notes should include the source of the update and a time reference whenever possible.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 0,
+    "explanation": "That creates stronger records and clearer continuity."
+  },
+  {
+    "id": 72,
+    "category": "Communication & Escalation",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: If a vendor is delayed, it is better to avoid documenting the issue until they arrive onsite.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 1,
+    "explanation": "False. Delays should be documented when reported so the record stays accurate."
+  },
+  {
+    "id": 73,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the main difference between daily and weekly reports in the source training?",
+    "options": [
+      "Daily focuses on current emergencies; weekly focuses on trends and success rates",
+      "They are exactly the same",
+      "Daily is only for vendors",
+      "Weekly is optional"
+    ],
+    "answer": 0,
+    "explanation": "The source questions define daily as 'now' and weekly as 'trends.'"
+  },
+  {
+    "id": 74,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Why is NAP consistency important in marketing?",
+    "options": [
+      "It means Nightly Action Plan",
+      "It stands for Name, Address, Phone and supports business trust/consistency",
+      "It is a cleaning chemical",
+      "It is a vendor payment term"
+    ],
+    "answer": 1,
+    "explanation": "NAP consistency helps business listings remain accurate and trustworthy."
+  },
+  {
+    "id": 75,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the goal of the No-Step-Skipping Discipline System?",
+    "options": [
+      "Make work more creative",
+      "Help VAs leave early",
+      "Ensure consistency and prevent avoidable follow-up issues",
+      "Reduce the number of photos"
+    ],
+    "answer": 2,
+    "explanation": "The system exists to prevent skipped process steps that cause rework later."
+  },
+  {
+    "id": 76,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Why do operations teams use trackers in addition to system notes?",
+    "options": [
+      "To decorate dashboards",
+      "To monitor patterns, pendings, follow-up status, and ownership in one view",
+      "To replace all systems",
+      "To avoid reporting"
+    ],
+    "answer": 1,
+    "explanation": "Trackers provide organized visibility across many open items."
+  },
+  {
+    "id": 77,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is the biggest risk of step-skipping in VA operations?",
+    "options": [
+      "Tickets look shorter",
+      "Important checks are missed, causing errors, client issues, or rework",
+      "It improves productivity too much",
+      "It removes the need for training"
+    ],
+    "answer": 1,
+    "explanation": "Skipping steps often creates downstream issues that take more time to fix."
+  },
+  {
+    "id": 78,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which review mindset best supports accuracy?",
+    "options": [
+      "Approve quickly if the vendor usually performs well",
+      "Follow the process every time, even on familiar tickets",
+      "Trust memory instead of the system",
+      "Only review tickets when a client complains"
+    ],
+    "answer": 1,
+    "explanation": "Consistency is built by following the process even when the job feels routine."
+  },
+  {
+    "id": 79,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Why should daily reports focus on what needs action now?",
+    "options": [
+      "Because weekly reports do not exist",
+      "Because urgent items need quick visibility and response",
+      "Because trends are not useful",
+      "Because clients dislike summaries"
+    ],
+    "answer": 1,
+    "explanation": "Daily reports are operational tools for current action and follow-up."
+  },
+  {
+    "id": 80,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What is the value of weekly trend reporting?",
+    "options": [
+      "It helps identify repeating issues, success rates, and process gaps over time",
+      "It removes the need for daily work",
+      "It is only for accounting",
+      "It closes all open jobs automatically"
+    ],
+    "answer": 0,
+    "explanation": "Trend reports help leadership and operations see patterns, not just single incidents."
+  },
+  {
+    "id": 81,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "A VA notices the same location keeps having late vendor arrivals every Friday. Which report type is best for highlighting that pattern?",
+    "options": [
+      "A single before/after photo",
+      "A weekly trend report",
+      "A one-line chat message",
+      "A blank spreadsheet"
+    ],
+    "answer": 1,
+    "explanation": "A weekly trend report is designed to highlight repeating patterns over time."
+  },
+  {
+    "id": 82,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "What is the strongest reason to separate urgent ticket handling from performance trend analysis?",
+    "options": [
+      "Because they require different time zones",
+      "Because one supports immediate action and the other supports improvement planning",
+      "Because trends are secret",
+      "Because emergencies should never be reported"
+    ],
+    "answer": 1,
+    "explanation": "Immediate action and pattern analysis serve different operational purposes."
+  },
+  {
+    "id": 83,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "If two systems show conflicting information, what should a VA do first?",
+    "options": [
+      "Choose the easier answer",
+      "Verify the source of truth and document the discrepancy before acting",
+      "Delete one record",
+      "Ignore the difference"
+    ],
+    "answer": 1,
+    "explanation": "Conflicts should be verified instead of guessed through."
+  },
+  {
+    "id": 84,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which action best reflects strong operational ownership?",
+    "options": [
+      "Waiting for someone else to notice missing evidence",
+      "Identifying the gap, documenting it, and following up until it is resolved",
+      "Approving incomplete work",
+      "Skipping the tracker update"
+    ],
+    "answer": 1,
+    "explanation": "Ownership means moving the issue toward resolution, not just noticing it."
+  },
+  {
+    "id": 85,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "Why is accuracy especially important in recurring work environments?",
+    "options": [
+      "Because recurring jobs never repeat",
+      "Because small repeated errors can multiply across many locations and cycles",
+      "Because photos are optional",
+      "Because weekly reports are rarely read"
+    ],
+    "answer": 1,
+    "explanation": "In recurring workflows, repeated small misses can scale into major operational problems."
+  },
+  {
+    "id": 86,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "hard",
+    "type": "mcq",
+    "question": "A VA sees a request already entered in one tracker, but the vendor asks for another entry 'just to be safe.' What is the best response?",
+    "options": [
+      "Create a second entry immediately",
+      "Check for duplicates by store/date and preserve one clean source of truth",
+      "Delete both entries",
+      "Tell the vendor to decide"
+    ],
+    "answer": 1,
+    "explanation": "Duplicate control prevents confusion, double-handling, and bad reporting."
+  },
+  {
+    "id": 87,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What does strong internal process discipline mainly protect?",
+    "options": [
+      "Only the VA’s speed",
+      "Accuracy, consistency, client trust, and cleaner downstream execution",
+      "Only marketing",
+      "Only social media"
+    ],
+    "answer": 1,
+    "explanation": "Process discipline supports reliable execution and trust throughout the workflow."
+  },
+  {
+    "id": 88,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: The No-Step-Skipping system exists to prevent avoidable cleanup calls and rework tomorrow.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 0,
+    "explanation": "The source question explains that the goal is to prevent issues that return later."
+  },
+  {
+    "id": 89,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: Daily and weekly reports should contain exactly the same type of focus and analysis.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 1,
+    "explanation": "False. Daily is current-action oriented; weekly is more trend oriented."
+  },
+  {
+    "id": 90,
+    "category": "Reporting, Discipline & Operational Judgment",
+    "difficulty": "medium",
+    "type": "tf",
+    "question": "True or False: Checking for duplicate entries by store ID and date is part of disciplined operational accuracy.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": 0,
+    "explanation": "That duplicate-control rule is directly named in the source training."
+  }
+];
+  </script>
+  <script>
+(() => {
+  const QUESTIONS = window.NPPW_QUESTIONS || [];
+  const TOTAL = QUESTIONS.length;
+  const PASSING_PERCENT = 90;
+  const EXAM_MINUTES = 90;
+  const STORAGE_KEY = "nppw_exam_state_v2";
+  const APP_VERSION = "NPPW-EXAM-2.0";
+  const KEY_LABELS = ["A","B","C","D"];
+
+  const els = {
+    launchStage: document.getElementById("launchStage"),
+    examStage: document.getElementById("examStage"),
+    reviewStage: document.getElementById("reviewStage"),
+    resultsStage: document.getElementById("resultsStage"),
+
+    traineeName: document.getElementById("traineeName"),
+    traineeRole: document.getElementById("traineeRole"),
+    proctorName: document.getElementById("proctorName"),
+    examMode: document.getElementById("examMode"),
+    supabaseUrlInput: document.getElementById("supabaseUrlInput"),
+    supabaseAnonKeyInput: document.getElementById("supabaseAnonKeyInput"),
+    startExamBtn: document.getElementById("startExamBtn"),
+    restoreExamBtn: document.getElementById("restoreExamBtn"),
+    resetSavedBtn: document.getElementById("resetSavedBtn"),
+
+    answeredCount: document.getElementById("answeredCount"),
+    flaggedCount: document.getElementById("flaggedCount"),
+    progressBar: document.getElementById("progressBar"),
+    progressCircle: document.getElementById("progressCircle"),
+    questionNav: document.getElementById("questionNav"),
+    navFilters: document.getElementById("navFilters"),
+    activeTrainee: document.getElementById("activeTrainee"),
+    activeCategory: document.getElementById("activeCategory"),
+    timeLeft: document.getElementById("timeLeft"),
+    autosaveStatus: document.getElementById("autosaveStatus"),
+    submissionStatus: document.getElementById("submissionStatus"),
+
+    questionCard: document.getElementById("questionCard"),
+    reviewBtn: document.getElementById("reviewBtn"),
+    submitBtn: document.getElementById("submitBtn"),
+    backToExamBtn: document.getElementById("backToExamBtn"),
+    finalSubmitBtn: document.getElementById("finalSubmitBtn"),
+
+    reviewSummary: document.getElementById("reviewSummary"),
+    reviewBuckets: document.getElementById("reviewBuckets"),
+    reviewCategoryBars: document.getElementById("reviewCategoryBars"),
+
+    scoreRingCircle: document.getElementById("scoreRingCircle"),
+    scorePercent: document.getElementById("scorePercent"),
+    resultHeading: document.getElementById("resultHeading"),
+    resultSubtext: document.getElementById("resultSubtext"),
+    passFailPill: document.getElementById("passFailPill"),
+    scoreCountText: document.getElementById("scoreCountText"),
+    durationText: document.getElementById("durationText"),
+    resultCategoryBars: document.getElementById("resultCategoryBars"),
+    answersList: document.getElementById("answersList"),
+    submissionLog: document.getElementById("submissionLog"),
+    printBtn: document.getElementById("printBtn"),
+    restartBtn: document.getElementById("restartBtn"),
+
+    toast: document.getElementById("toast"),
+    confetti: document.getElementById("confetti"),
+  };
+
+  const state = {
+    started: false,
+    submitted: false,
+    currentIndex: 0,
+    answers: {},
+    flagged: {},
+    timer: EXAM_MINUTES * 60,
+    startedAt: null,
+    submittedAt: null,
+    traineeName: "",
+    traineeRole: "",
+    proctorName: "",
+    examMode: "standard",
+    navFilter: "all",
+    submissionMeta: [],
+    supabaseUrl: "",
+    supabaseAnonKey: "",
+  };
+
+  let countdownInterval = null;
+  const progressCircumference = 402.12;
+  const scoreCircumference = 590.62;
+
+  function getConfiguredSupabase() {
+    const inlineConfig = window.SUPABASE_CONFIG || {};
+    const url = (els.supabaseUrlInput?.value || state.supabaseUrl || inlineConfig.url || "").trim();
+    const anonKey = (els.supabaseAnonKeyInput?.value || state.supabaseAnonKey || inlineConfig.anonKey || inlineConfig.key || inlineConfig.publishableKey || "").trim();
+    return { url, anonKey };
+  }
+
+  function hasDirectSupabaseConfig() {
+    const { url, anonKey } = getConfiguredSupabase();
+    return Boolean(url && anonKey && window.supabase?.createClient);
+  }
+
+  async function submitToSupabaseDirect(payload) {
+    const { url, anonKey } = getConfiguredSupabase();
+    if (!url || !anonKey) {
+      throw new Error("Supabase URL or API key is missing in index.html.");
+    }
+    if (!window.supabase?.createClient) {
+      throw new Error("Supabase browser client did not load.");
+    }
+
+    const client = window.supabase.createClient(url, anonKey);
+    const { error } = await client.from("exam_attempts").insert([payload]);
+    if (error) throw error;
+    return { ok: true, message: "Attempt saved to Supabase." };
+  }
+
+  function showToast(title, detail = "") {
+    els.toast.innerHTML = `<strong>${title}</strong>${detail ? `<small>${detail}</small>` : ""}`;
+    els.toast.classList.add("show");
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => els.toast.classList.remove("show"), 2400);
+  }
+
+  function activateStage(name) {
+    [els.launchStage, els.examStage, els.reviewStage, els.resultsStage].forEach((stage) => {
+      stage.classList.remove("active");
+    });
+    els[`${name}Stage`].classList.add("active");
+  }
+
+  function countAnswered() {
+    return Object.keys(state.answers).length;
+  }
+
+  function countFlagged() {
+    return Object.keys(state.flagged).length;
+  }
+
+  function formatTime(totalSeconds) {
+    const seconds = Math.max(0, totalSeconds);
+    const mins = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    return `${String(mins).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+  }
+
+  function updateSidebar() {
+    const answered = countAnswered();
+    const flagged = countFlagged();
+    const pct = TOTAL ? (answered / TOTAL) * 100 : 0;
+    els.answeredCount.textContent = `${answered}/${TOTAL}`;
+    els.flaggedCount.textContent = flagged;
+    els.progressBar.style.width = `${pct}%`;
+    const offset = progressCircumference - (pct / 100) * progressCircumference;
+    els.progressCircle.style.strokeDashoffset = String(offset);
+    els.timeLeft.textContent = state.examMode === "practice" && state.started && !state.submitted ? "Practice" : formatTime(state.timer);
+    els.activeTrainee.textContent = state.traineeName ? `${state.traineeName}${state.traineeRole ? ` • ${state.traineeRole}` : ""}` : "Awaiting trainee";
+    els.submissionStatus.textContent = hasDirectSupabaseConfig()
+      ? "Submit mode: Supabase direct"
+      : "Submit mode: waiting for Supabase config";
+    const current = QUESTIONS[state.currentIndex];
+    els.activeCategory.textContent = current ? current.category : "Category";
+    renderNav();
+  }
+
+  function renderNavFilters() {
+    const filters = [
+      { key: "all", label: "All" },
+      { key: "answered", label: "Answered" },
+      { key: "flagged", label: "Flagged" },
+      { key: "unanswered", label: "Unanswered" },
+    ];
+    els.navFilters.innerHTML = filters.map(filter => `
+      <button class="chip ${state.navFilter === filter.key ? "active" : ""}" data-filter="${filter.key}">${filter.label}</button>
+    `).join("");
+
+    els.navFilters.querySelectorAll("[data-filter]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.navFilter = btn.dataset.filter;
+        renderNavFilters();
+        renderNav();
+      });
+    });
+  }
+
+  function navVisible(questionId) {
+    const answered = state.answers[questionId] !== undefined;
+    const flagged = !!state.flagged[questionId];
+    if (state.navFilter === "answered") return answered;
+    if (state.navFilter === "flagged") return flagged;
+    if (state.navFilter === "unanswered") return !answered;
+    return true;
+  }
+
+  function renderNav() {
+    els.questionNav.innerHTML = "";
+    QUESTIONS.forEach((q, index) => {
+      if (!navVisible(q.id)) return;
+      const answered = state.answers[q.id] !== undefined;
+      const flagged = !!state.flagged[q.id];
+      const btn = document.createElement("button");
+      btn.textContent = q.id;
+      btn.className = [
+        answered ? "answered" : "unanswered",
+        flagged ? "flagged" : "",
+        state.currentIndex === index ? "current" : "",
+        state.submitted ? (state.answers[q.id] === q.answer ? "correct" : "incorrect") : ""
+      ].join(" ").trim();
+      btn.title = `${q.category} • Question ${q.id}`;
+      btn.addEventListener("click", () => {
+        state.currentIndex = index;
+        if (!state.submitted) activateStage("exam");
+        renderQuestion();
+        updateSidebar();
+      });
+      els.questionNav.appendChild(btn);
+    });
+
+    if (!els.questionNav.children.length) {
+      els.questionNav.innerHTML = `<div class="empty-state" style="grid-column:1 / -1">No questions match the current filter.</div>`;
+    }
+  }
+
+  function setAnswer(questionId, answerIndex) {
+    state.answers[questionId] = answerIndex;
+    saveState();
+    updateSidebar();
+    renderQuestion();
+    showToast("Answer saved", `Question ${questionId} has been updated.`);
+  }
+
+  function toggleFlag(questionId) {
+    if (state.flagged[questionId]) delete state.flagged[questionId];
+    else state.flagged[questionId] = true;
+    saveState();
+    updateSidebar();
+    renderQuestion();
+    showToast(state.flagged[questionId] ? "Question flagged" : "Flag removed");
+  }
+
+  function clearAnswer(questionId) {
+    delete state.answers[questionId];
+    saveState();
+    updateSidebar();
+    renderQuestion();
+    showToast("Answer cleared", `Question ${questionId} is now unanswered.`);
+  }
+
+  function renderQuestion() {
+    const q = QUESTIONS[state.currentIndex];
+    if (!q) return;
+    const selected = state.answers[q.id];
+    const isFlagged = !!state.flagged[q.id];
+
+    const explanationBlock = state.submitted ? `
+      <div class="helper">
+        <strong style="display:block; color:#deebff; margin-bottom:8px">Explanation</strong>
+        ${q.explanation}
+      </div>
+    ` : "";
+
+    const options = q.options.map((option, idx) => {
+      const isSelected = selected === idx;
+      const isCorrect = idx === q.answer;
+      let resultClass = "";
+      if (state.submitted) {
+        if (isCorrect) resultClass = "correct";
+        else if (isSelected && !isCorrect) resultClass = "wrong";
+      } else if (isSelected) {
+        resultClass = "selected";
+      }
+      return `
+        <button class="option ${resultClass}" data-option="${idx}">
+          <span class="option-key">${q.type === "tf" ? (idx === 0 ? "T" : "F") : KEY_LABELS[idx]}</span>
+          <span class="option-text">${option}</span>
+        </button>
+      `;
+    }).join("");
+
+    const helper = !state.submitted ? `
+      <div class="helper">
+        <strong style="display:block; color:#deebff; margin-bottom:8px">Focus reminder</strong>
+        Validate the process, not just the appearance. Think about scheduling logic, realistic timing, photo proof, documentation quality, and escalation rules.
+      </div>
+    ` : "";
+
+    els.questionCard.innerHTML = `
+      <div class="question-head">
+        <div>
+          <div class="q-number">Question ${q.id} of ${TOTAL}</div>
+          <div class="question-meta" style="margin-top:10px">
+            <span class="tag">${q.category}</span>
+            <span class="tag">Difficulty: ${q.difficulty}</span>
+            <span class="tag">${q.type === "tf" ? "True / False" : "Multiple Choice"}</span>
+            ${isFlagged ? `<span class="tag" style="color:#ffe39f; border-color:rgba(255,204,102,.35); background:rgba(255,204,102,.10)">Flagged for review</span>` : ""}
+          </div>
+        </div>
+      </div>
+      <h3 class="q-title">${q.question}</h3>
+      <div class="options">${options}</div>
+      ${helper}
+      ${explanationBlock}
+      <div class="question-actions">
+        <div class="left-actions">
+          <button class="btn btn-secondary" id="prevBtn"${state.currentIndex === 0 ? " disabled" : ""}>Previous</button>
+          <button class="btn btn-secondary" id="nextBtn">${state.currentIndex === TOTAL - 1 ? "Finish review" : "Next"}</button>
+        </div>
+        <div class="right-actions">
+          <button class="btn btn-secondary" id="flagBtn">${isFlagged ? "Unflag" : "Flag"}</button>
+          <button class="btn btn-secondary" id="clearBtn"${selected === undefined || state.submitted ? " disabled" : ""}>Clear answer</button>
+        </div>
+      </div>
+    `;
+
+    els.questionCard.querySelectorAll("[data-option]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (state.submitted) return;
+        setAnswer(q.id, Number(btn.dataset.option));
+      });
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", goPrev);
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      if (state.currentIndex === TOTAL - 1) openReview();
+      else goNext();
+    });
+    document.getElementById("flagBtn").addEventListener("click", () => toggleFlag(q.id));
+    document.getElementById("clearBtn").addEventListener("click", () => clearAnswer(q.id));
+  }
+
+  function goNext() {
+    state.currentIndex = Math.min(TOTAL - 1, state.currentIndex + 1);
+    renderQuestion();
+    updateSidebar();
+  }
+
+  function goPrev() {
+    state.currentIndex = Math.max(0, state.currentIndex - 1);
+    renderQuestion();
+    updateSidebar();
+  }
+
+  function getCategoryStats() {
+    const stats = {};
+    QUESTIONS.forEach(q => {
+      if (!stats[q.category]) {
+        stats[q.category] = { total: 0, answered: 0, correct: 0 };
+      }
+      stats[q.category].total += 1;
+      if (state.answers[q.id] !== undefined) stats[q.category].answered += 1;
+      if (state.submitted && state.answers[q.id] === q.answer) stats[q.category].correct += 1;
+    });
+    return stats;
+  }
+
+  function renderReview() {
+    const answered = countAnswered();
+    const flagged = countFlagged();
+    const unanswered = TOTAL - answered;
+    const completion = Math.round((answered / TOTAL) * 100);
+    const categories = getCategoryStats();
+
+    els.reviewSummary.innerHTML = [
+      { label: "Answered", value: answered, note: `${completion}% complete` },
+      { label: "Unanswered", value: unanswered, note: unanswered ? "Still needs review" : "All questions answered" },
+      { label: "Flagged", value: flagged, note: flagged ? "Marked for second look" : "No flagged items" },
+      { label: "Passing target", value: `${PASSING_PERCENT}%`, note: "Required score" }
+    ].map(item => `
+      <div class="summary-stat">
+        <div class="stat-label">${item.label}</div>
+        <strong>${item.value}</strong>
+        <div class="small-note" style="margin-top:8px">${item.note}</div>
+      </div>
+    `).join("");
+
+    const unansweredQuestions = QUESTIONS.filter(q => state.answers[q.id] === undefined).slice(0, 6).map(q => `Q${q.id}`).join(", ") || "None";
+    const flaggedQuestions = QUESTIONS.filter(q => state.flagged[q.id]).slice(0, 6).map(q => `Q${q.id}`).join(", ") || "None";
+    const lowCoverageCategory = Object.entries(categories).sort((a,b) => (a[1].answered / a[1].total) - (b[1].answered / b[1].total))[0];
+
+    els.reviewBuckets.innerHTML = `
+      <div class="review-item">
+        <h4>Unanswered focus</h4>
+        <p>${unansweredQuestions}</p>
+      </div>
+      <div class="review-item">
+        <h4>Flagged focus</h4>
+        <p>${flaggedQuestions}</p>
+      </div>
+      <div class="review-item">
+        <h4>Lowest coverage category</h4>
+        <p>${lowCoverageCategory ? `${lowCoverageCategory[0]} (${lowCoverageCategory[1].answered}/${lowCoverageCategory[1].total})` : "N/A"}</p>
+      </div>
+    `;
+
+    els.reviewCategoryBars.innerHTML = Object.entries(categories).map(([name, stat]) => {
+      const pct = Math.round((stat.answered / stat.total) * 100);
+      return `
+        <div class="cat-row">
+          <div class="cat-head">
+            <strong>${name}</strong>
+            <span>${stat.answered} / ${stat.total} answered</span>
+          </div>
+          <div class="progress"><span style="width:${pct}%"></span></div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function openReview() {
+    renderReview();
+    activateStage("review");
+  }
+
+  function createSubmissionPayload() {
+    const answered = countAnswered();
+    const correctCount = QUESTIONS.reduce((sum, q) => sum + (state.answers[q.id] === q.answer ? 1 : 0), 0);
+    const percentage = Number(((correctCount / TOTAL) * 100).toFixed(2));
+    const passed = percentage >= PASSING_PERCENT;
+    const categories = getCategoryStats();
+    const categoryBreakdown = Object.entries(categories).map(([name, stat]) => ({
+      category: name,
+      total: stat.total,
+      answered: stat.answered,
+      correct: state.submitted ? stat.correct : QUESTIONS.filter(q => q.category === name && state.answers[q.id] === q.answer).length,
+      accuracy: Number((((QUESTIONS.filter(q => q.category === name && state.answers[q.id] === q.answer).length) / stat.total) * 100).toFixed(2))
+    }));
+
+    return {
+      exam_version: APP_VERSION,
+      trainee_name: state.traineeName,
+      trainee_role: state.traineeRole,
+      proctor_name: state.proctorName,
+      exam_mode: state.examMode,
+      started_at: state.startedAt,
+      submitted_at: state.submittedAt,
+      duration_seconds: Math.max(0, EXAM_MINUTES * 60 - state.timer),
+      total_questions: TOTAL,
+      answered_count: answered,
+      flagged_count: countFlagged(),
+      correct_count: correctCount,
+      percentage,
+      passed,
+      answers: QUESTIONS.map(q => ({
+        id: q.id,
+        category: q.category,
+        selected: state.answers[q.id] ?? null,
+        correct: q.answer,
+        is_correct: state.answers[q.id] === q.answer
+      })),
+      category_breakdown: categoryBreakdown,
+      environment: window.location.hostname || "local",
+    };
+  }
+
+  async function submitToNetlifyFunction(payload) {
+    const response = await fetch("/.netlify/functions/submit-exam", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(data.error || "Netlify function submission failed.");
+    }
+    return data;
+  }
+
+  async function submitNetlifyBackup(payload) {
+    const params = new URLSearchParams();
+    params.append("form-name", "nppw-exam-backup");
+    params.append("trainee_name", payload.trainee_name);
+    params.append("trainee_role", payload.trainee_role || "");
+    params.append("exam_version", payload.exam_version);
+    params.append("percentage", String(payload.percentage));
+    params.append("score", `${payload.correct_count}/${payload.total_questions}`);
+    params.append("passed", String(payload.passed));
+    params.append("payload", JSON.stringify(payload));
+
+    const res = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString()
+    });
+    if (!res.ok) throw new Error("Netlify form backup failed.");
+    return { ok: true };
+  }
+
+  async function submitAttempt() {
+    state.submitted = true;
+    state.submittedAt = new Date().toISOString();
+    stopTimer();
+    saveState();
+
+    const payload = createSubmissionPayload();
+    const logs = [];
+
+    try {
+      const result = await submitToSupabaseDirect(payload);
+      logs.push({
+        title: "Supabase submission saved",
+        detail: result.message || "Attempt saved to Supabase."
+      });
+      els.submissionStatus.textContent = "Submit mode: Supabase direct";
+    } catch (directError) {
+      logs.push({
+        title: "Supabase submission not completed",
+        detail: directError.message || "Direct Supabase connection is not configured yet."
+      });
+
+      try {
+        const result = await submitToNetlifyFunction(payload);
+        logs.push({
+          title: "Netlify Function fallback saved",
+          detail: result.message || "Attempt saved through Netlify Function."
+        });
+        els.submissionStatus.textContent = "Submit mode: Netlify Function fallback";
+      } catch (functionError) {
+        logs.push({
+          title: "Netlify Function fallback not completed",
+          detail: functionError.message || "Netlify Function is not configured yet."
+        });
+      }
+    }
+
+    try {
+      await submitNetlifyBackup(payload);
+      logs.push({
+        title: "Netlify Forms backup sent",
+        detail: "A backup copy of this attempt was posted to your Netlify site forms."
+      });
+    } catch (error) {
+      logs.push({
+        title: "Netlify Forms backup not sent",
+        detail: error.message || "Form detection may not be active on this deployment."
+      });
+    }
+
+    state.submissionMeta = logs;
+    saveState();
+    renderResults(payload);
+    activateStage("results");
+    if (payload.passed) launchConfetti();
+  }
+
+  function renderResults(payload) {
+    const percent = payload.percentage;
+    const passed = payload.passed;
+    els.scorePercent.textContent = `${percent}%`;
+    els.resultHeading.textContent = passed ? "Passed the NPPW examination" : "Result below the passing mark";
+    els.resultSubtext.textContent = passed
+      ? "The trainee met the required accuracy standard for this assessment."
+      : "The trainee did not reach the 90% requirement and should review the weak categories below.";
+    els.passFailPill.textContent = passed ? "PASS" : "FAIL";
+    els.passFailPill.className = `pill ${passed ? "status-pass" : "status-fail"}`;
+    els.scoreCountText.textContent = `${payload.correct_count} / ${payload.total_questions} correct`;
+    els.durationText.textContent = `Duration: ${formatTime(payload.duration_seconds)}`;
+    const offset = scoreCircumference - (percent / 100) * scoreCircumference;
+    els.scoreRingCircle.style.strokeDashoffset = String(offset);
+
+    els.submissionLog.innerHTML = state.submissionMeta.map(item => `
+      <div class="submission-item">
+        <strong style="display:block; color:#deebff; margin-bottom:4px">${item.title}</strong>
+        <span>${item.detail}</span>
+      </div>
+    `).join("");
+
+    els.resultCategoryBars.innerHTML = payload.category_breakdown.map(cat => `
+      <div class="cat-row">
+        <div class="cat-head">
+          <strong>${cat.category}</strong>
+          <span>${cat.correct} / ${cat.total} correct • ${cat.accuracy}%</span>
+        </div>
+        <div class="progress"><span style="width:${cat.accuracy}%"></span></div>
+      </div>
+    `).join("");
+
+    els.answersList.innerHTML = QUESTIONS.map(q => {
+      const selected = state.answers[q.id];
+      const isCorrect = selected === q.answer;
+      return `
+        <div class="answer-item ${isCorrect ? "correct" : "incorrect"}">
+          <div class="answer-top">
+            <div>
+              <div class="badge" style="margin-bottom:10px">${q.category}</div>
+              <h4>Q${q.id}. ${q.question}</h4>
+            </div>
+            <div class="pill ${isCorrect ? "status-pass" : "status-fail"}">${isCorrect ? "Correct" : "Incorrect"}</div>
+          </div>
+          <div class="answer-lines">
+            <div class="answer-line"><strong>Your answer:</strong> ${selected === undefined ? "No answer selected" : q.options[selected]}</div>
+            <div class="answer-line"><strong>Correct answer:</strong> ${q.options[q.answer]}</div>
+            <div class="answer-line"><strong>Explanation:</strong> ${q.explanation}</div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      els.autosaveStatus.textContent = `Autosave: ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
+    } catch (error) {
+      els.autosaveStatus.textContent = "Autosave: unavailable";
+    }
+  }
+
+  function restoreState() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+      showToast("No saved attempt found");
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(raw);
+      Object.assign(state, parsed);
+      renderFromState();
+      showToast("Saved attempt restored", "You can continue from where you stopped.");
+    } catch (error) {
+      showToast("Restore failed", "Saved data could not be loaded.");
+    }
+  }
+
+  function resetStateAndStorage() {
+    localStorage.removeItem(STORAGE_KEY);
+    window.location.reload();
+  }
+
+  function renderFromState() {
+    if (els.traineeName) els.traineeName.value = state.traineeName || "";
+    if (els.traineeRole) els.traineeRole.value = state.traineeRole || "";
+    if (els.proctorName) els.proctorName.value = state.proctorName || "";
+    if (els.examMode) els.examMode.value = state.examMode || "standard";
+    const inlineConfig = window.SUPABASE_CONFIG || {};
+    if (els.supabaseUrlInput) els.supabaseUrlInput.value = state.supabaseUrl || inlineConfig.url || "";
+    if (els.supabaseAnonKeyInput) els.supabaseAnonKeyInput.value = state.supabaseAnonKey || inlineConfig.anonKey || "";
+    renderNavFilters();
+    updateSidebar();
+    if (state.submitted) {
+      renderResults(createSubmissionPayload());
+      activateStage("results");
+      return;
+    }
+    if (state.started) {
+      renderQuestion();
+      activateStage("exam");
+      startTimer();
+    } else {
+      activateStage("launch");
+    }
+  }
+
+  function startExam() {
+    const name = els.traineeName.value.trim();
+    if (!name) {
+      showToast("Trainee name is required", "Enter the full name before starting.");
+      els.traineeName.focus();
+      return;
+    }
+
+    state.started = true;
+    state.submitted = false;
+    state.currentIndex = 0;
+    state.answers = {};
+    state.flagged = {};
+    state.timer = EXAM_MINUTES * 60;
+    state.startedAt = new Date().toISOString();
+    state.submittedAt = null;
+    state.traineeName = name;
+    state.traineeRole = els.traineeRole.value.trim();
+    state.proctorName = els.proctorName.value.trim();
+    state.examMode = els.examMode.value;
+    state.submissionMeta = [];
+    state.supabaseUrl = els.supabaseUrlInput?.value.trim() || (window.SUPABASE_CONFIG?.url || "").trim();
+    state.supabaseAnonKey = els.supabaseAnonKeyInput?.value.trim() || (window.SUPABASE_CONFIG?.anonKey || "").trim();
+
+    renderNavFilters();
+    renderQuestion();
+    updateSidebar();
+    activateStage("exam");
+    saveState();
+    startTimer();
+    showToast("Exam started", "Autosave is active in this browser.");
+  }
+
+  function startTimer() {
+    stopTimer();
+    if (state.examMode === "practice") {
+      els.timeLeft.textContent = "Practice";
+      return;
+    }
+    countdownInterval = window.setInterval(() => {
+      if (state.timer <= 0) {
+        clearInterval(countdownInterval);
+        state.timer = 0;
+        updateSidebar();
+        showToast("Time is up", "The exam will now submit automatically.");
+        submitAttempt();
+        return;
+      }
+      state.timer -= 1;
+      updateSidebar();
+      if (state.timer % 15 === 0) saveState();
+    }, 1000);
+  }
+
+  function stopTimer() {
+    if (countdownInterval) clearInterval(countdownInterval);
+  }
+
+  function launchConfetti() {
+    els.confetti.innerHTML = "";
+    for (let i = 0; i < 60; i += 1) {
+      const piece = document.createElement("div");
+      piece.className = "confetti-piece";
+      piece.style.left = `${Math.random() * 100}%`;
+      piece.style.animationDuration = `${4 + Math.random() * 4}s`;
+      piece.style.animationDelay = `${Math.random() * 0.4}s`;
+      piece.style.setProperty("--x", `${(Math.random() - 0.5) * 240}px`);
+      piece.style.opacity = "1";
+      els.confetti.appendChild(piece);
+    }
+    setTimeout(() => { els.confetti.innerHTML = ""; }, 7000);
+  }
+
+  function handleKeydown(event) {
+    const tag = document.activeElement && document.activeElement.tagName;
+    if (["INPUT", "TEXTAREA", "SELECT"].includes(tag)) return;
+    if (!state.started || state.submitted) {
+      if (event.key.toLowerCase() === "r" && state.submitted) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      return;
+    }
+    const q = QUESTIONS[state.currentIndex];
+    if (!q) return;
+
+    if (event.key >= "1" && event.key <= "4") {
+      const idx = Number(event.key) - 1;
+      if (q.options[idx] !== undefined) setAnswer(q.id, idx);
+    }
+    if (q.type === "tf") {
+      if (event.key.toLowerCase() === "t") setAnswer(q.id, 0);
+      if (event.key.toLowerCase() === "x") setAnswer(q.id, 1);
+    }
+    if (event.key.toLowerCase() === "n") goNext();
+    if (event.key.toLowerCase() === "p") goPrev();
+    if (event.key.toLowerCase() === "f") toggleFlag(q.id);
+    if (event.key.toLowerCase() === "r") openReview();
+  }
+
+  function attachEvents() {
+    els.startExamBtn.addEventListener("click", startExam);
+    els.restoreExamBtn.addEventListener("click", restoreState);
+    els.resetSavedBtn.addEventListener("click", () => {
+      if (confirm("Clear the saved attempt from this browser?")) resetStateAndStorage();
+    });
+    els.reviewBtn.addEventListener("click", openReview);
+    els.submitBtn.addEventListener("click", openReview);
+    els.backToExamBtn.addEventListener("click", () => activateStage("exam"));
+    els.finalSubmitBtn.addEventListener("click", () => {
+      const unanswered = TOTAL - countAnswered();
+      const message = unanswered
+        ? `There are still ${unanswered} unanswered question(s). Submit anyway?`
+        : "Submit this exam now?";
+      if (confirm(message)) submitAttempt();
+    });
+    els.printBtn.addEventListener("click", () => window.print());
+    els.restartBtn.addEventListener("click", () => {
+      if (confirm("Start a new attempt? This will clear the saved state.")) {
+        localStorage.removeItem(STORAGE_KEY);
+        window.location.reload();
+      }
+    });
+    document.addEventListener("keydown", handleKeydown);
+  }
+
+  attachEvents();
+  const inlineConfig = window.SUPABASE_CONFIG || {};
+  if (els.supabaseUrlInput && inlineConfig.url) els.supabaseUrlInput.value = inlineConfig.url;
+  if (els.supabaseAnonKeyInput && inlineConfig.anonKey) els.supabaseAnonKeyInput.value = inlineConfig.anonKey;
+  [els.supabaseUrlInput, els.supabaseAnonKeyInput].forEach((input) => {
+    if (!input) return;
+    input.addEventListener("input", () => {
+      state.supabaseUrl = els.supabaseUrlInput?.value.trim() || state.supabaseUrl;
+      state.supabaseAnonKey = els.supabaseAnonKeyInput?.value.trim() || state.supabaseAnonKey;
+      updateSidebar();
+    });
+  });
+  renderNavFilters();
+  updateSidebar();
+
+  if (localStorage.getItem(STORAGE_KEY)) {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (saved?.started) {
+      els.restoreExamBtn.textContent = "Restore in-progress attempt";
+      showToast("Saved attempt detected", "You can restore it from this browser.");
+    }
+  }
+})();
+  </script>
 </body>
 </html>
