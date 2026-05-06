@@ -455,7 +455,7 @@
           </div>
           <div class="badge-row">
             <span class="badge" id="autosaveStatus">Autosave: ready</span>
-            <span class="badge" id="submissionStatus">Submit mode: Training Department</span>
+            <span class="badge" id="submissionStatus">Submit mode: Netlify + Supabase ready</span>
           </div>
         </div>
 
@@ -526,8 +526,7 @@
                 </div>
               </div>
               <p class="small-note" style="margin-top:14px">
-                The exam works as a static site, but on Netlify it can also submit results through a server-side function into Supabase,
-                with a Netlify Forms backup log for extra reliability.
+                The exam works will identify your accuracy and judgement.
               </p>
             </div>
           </div>
@@ -575,10 +574,10 @@
                   <div class="check-item"><span class="check-icon">1</span><span>Animated mission-control interface with live progress ring and heatmap.</span></div>
                   <div class="check-item"><span class="check-icon">2</span><span>Question flagging, quick jump navigation, review screen, and category accuracy cards.</span></div>
                   <div class="check-item"><span class="check-icon">3</span><span>Automatic save and recovery, print-ready results, and answer explanations.</span></div>
-                  <div class="check-item"><span class="check-icon">4</span><span>Trainers will check your scores.</span></div>
+                  <div class="check-item"><span class="check-icon">4</span><span>Netlify Function for secure server-side Supabase submission, plus Netlify Forms backup.</span></div>
                 </div>
                 <div class="footer-note">
-                  Tip: Accuracy and attention to details.
+                  Tip: Read it carefully.
                 </div>
               </div>
             </div>
@@ -669,6 +668,13 @@
 
   <div class="toast" id="toast"></div>
 
+  <script>
+    window.SUPABASE_CONFIG = {
+      url: "https://jaonzawmfwrikiebhlxa.supabase.co",
+      anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imphb256YXdtZndyaWtpZWJobHhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NzU0NjQsImV4cCI6MjA5MzA1MTQ2NH0.D5XZkNNGaJ_gLHQt5VmzZ8waFKdI29lL-yu3UGRgHz4"
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./assets/js/question-bank.js"></script>
   <script src="./assets/js/app.js"></script>
 </body>
