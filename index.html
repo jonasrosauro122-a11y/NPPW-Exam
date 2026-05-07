@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NPPW VA Examination | Mission Control</title>
-  <meta name="description" content="Interactive NPPW VA Examination with 90 questions, advanced review flow, and direct Supabase submission." />
+  <meta name="description" content="Interactive NPPW VA Examination with 90 questions, advanced review flow, direct Supabase submission, Netlify email backup, and admin answer unlock." />
   <style>
     :root{
       --bg:#07111f;
@@ -363,6 +363,14 @@
     .empty-state{
       padding:16px; border-radius:18px; border:1px dashed rgba(255,255,255,.12); color:var(--muted); text-align:center
     }
+
+    .admin-card{padding:22px; margin-top:18px}
+    .admin-lock-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:start}
+    .admin-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:16px}
+    .admin-status{margin-top:12px; color:var(--muted); font-size:.88rem; line-height:1.6}
+    .admin-highlight{color:#dff7ff}
+    .admin-badge{border-color:rgba(157,123,255,.4); background:rgba(157,123,255,.12); color:#f1eaff}
+
     @media (max-width:1180px){
       .grid,.hero-grid,.launch-grid,.results-top{grid-template-columns:1fr}
       .sidebar{position:relative; top:0}
@@ -526,7 +534,7 @@
                 </div>
               </div>
               <p class="small-note" style="margin-top:14px">
-                This version connects directly from the browser to Supabase using your public project URL and public API key.
+                This version connects directly from the browser to Supabase using your public project URL and public API key, while also posting a Netlify Forms backup so you can enable email notifications for each final submission.
               </p>
             </div>
           </div>
@@ -656,9 +664,46 @@
             <div class="category-bars" id="resultCategoryBars" style="margin-top:24px"></div>
           </div>
 
-          <div class="answers-card glass" style="margin-top:18px">
-            <div class="section-title">Answer review</div>
-            <h3 style="font-size:1.4rem; margin-bottom:10px">Question-by-question review with explanations</h3>
+          <div class="admin-card glass" id="adminLockCard">
+            <div class="section-title">Admin review lock</div>
+            <div class="admin-lock-grid">
+              <div>
+                <h3 style="font-size:1.4rem; margin-bottom:10px">Unlock the protected answer key</h3>
+                <p class="small-note">Trainees can see their score and category results immediately. The full correct-answer review is locked for admins so the exam stays reusable.</p>
+                <div class="actions" style="margin-top:18px">
+                  <div class="field" style="min-width:min(100%,420px)">
+                    <label for="adminPasswordInput">Admin password</label>
+                    <input id="adminPasswordInput" class="input" type="password" placeholder="Enter admin password" autocomplete="current-password" />
+                  </div>
+                </div>
+                <div class="admin-actions">
+                  <button class="btn btn-primary" id="adminUnlockBtn">Unlock admin review</button>
+                </div>
+                <div class="admin-status" id="adminLockMessage">Set your password in <span class="admin-highlight">window.ADMIN_CONFIG.password</span> near the bottom of this file. On Netlify, each final submission also posts to the hidden Netlify form so you can turn on email notifications in the dashboard.</div>
+              </div>
+              <div class="mini-card">
+                <div class="section-title">What admins unlock</div>
+                <div class="checklist">
+                  <div class="check-item"><span class="check-icon">✓</span><span>Correct answer per question</span></div>
+                  <div class="check-item"><span class="check-icon">✓</span><span>Full explanation review</span></div>
+                  <div class="check-item"><span class="check-icon">✓</span><span>Submission status log for Supabase and Netlify</span></div>
+                </div>
+                <div class="footer-note">This lock is designed for quick internal control on a static site. For stronger protection, move answer checking to a server-side function later.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="answers-card glass hidden" id="answersCard" style="margin-top:18px">
+            <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; align-items:center">
+              <div>
+                <div class="section-title">Admin answer review</div>
+                <h3 style="font-size:1.4rem; margin-bottom:10px">Question-by-question review with explanations</h3>
+              </div>
+              <div class="actions" style="margin-top:0">
+                <span class="pill admin-badge">Admin unlocked</span>
+                <button class="btn btn-secondary" id="adminLockBtn">Hide answer key</button>
+              </div>
+            </div>
             <div class="answers-list" id="answersList"></div>
           </div>
         </section>
@@ -670,8 +715,13 @@
 
   <script>
     window.SUPABASE_CONFIG = {
-      url: "https://jaonzawmfwrikiebhlxa.supabase.co",
-      key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imphb256YXdtZndyaWtpZWJobHhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NzU0NjQsImV4cCI6MjA5MzA1MTQ2NH0.D5XZkNNGaJ_gLHQt5VmzZ8waFKdI29lL-yu3UGRgHz4"
+      url: "https://YOUR-PROJECT-REF.supabase.co",
+      key: "YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY"
+    };
+  </script>
+  <script>
+    window.ADMIN_CONFIG = {
+      password: "Nppwadmin123"
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -2061,6 +2111,12 @@ window.NPPW_QUESTIONS = [
     submissionLog: document.getElementById("submissionLog"),
     printBtn: document.getElementById("printBtn"),
     restartBtn: document.getElementById("restartBtn"),
+    adminLockCard: document.getElementById("adminLockCard"),
+    answersCard: document.getElementById("answersCard"),
+    adminPasswordInput: document.getElementById("adminPasswordInput"),
+    adminUnlockBtn: document.getElementById("adminUnlockBtn"),
+    adminLockBtn: document.getElementById("adminLockBtn"),
+    adminLockMessage: document.getElementById("adminLockMessage"),
 
     toast: document.getElementById("toast"),
     confetti: document.getElementById("confetti"),
@@ -2083,6 +2139,7 @@ window.NPPW_QUESTIONS = [
     submissionMeta: [],
     supabaseUrl: "",
     supabaseAnonKey: "",
+    adminUnlocked: false,
   };
 
   let countdownInterval = null;
@@ -2114,6 +2171,47 @@ window.NPPW_QUESTIONS = [
     const { error } = await client.from("exam_attempts").insert([payload]);
     if (error) throw error;
     return { ok: true, message: "Attempt saved to Supabase." };
+  }
+
+  function getAdminPassword() {
+    const cfg = window.ADMIN_CONFIG || {};
+    return String(cfg.password || "").trim();
+  }
+
+  function setAdminAnswerVisibility(isUnlocked) {
+    state.adminUnlocked = !!isUnlocked;
+    if (els.answersCard) els.answersCard.classList.toggle("hidden", !state.adminUnlocked);
+    if (els.adminLockCard) els.adminLockCard.classList.toggle("hidden", state.adminUnlocked);
+  }
+
+  function unlockAdminReview() {
+    const configured = getAdminPassword();
+    if (!configured || configured === "CHANGE_THIS_ADMIN_PASSWORD") {
+      showToast("Set the admin password first", "Update window.ADMIN_CONFIG.password near the bottom of index.html.");
+      return;
+    }
+    const entered = (els.adminPasswordInput?.value || "").trim();
+    if (!entered) {
+      showToast("Admin password required");
+      els.adminPasswordInput?.focus();
+      return;
+    }
+    if (entered !== configured) {
+      showToast("Wrong admin password", "Please try again.");
+      if (els.adminLockMessage) els.adminLockMessage.textContent = "Incorrect password. Check the password saved in window.ADMIN_CONFIG.password.";
+      return;
+    }
+    setAdminAnswerVisibility(true);
+    if (els.adminLockMessage) els.adminLockMessage.textContent = "Admin review unlocked for this browser session.";
+    saveState();
+    showToast("Admin review unlocked", "The full answer key is now visible.");
+  }
+
+  function lockAdminReview() {
+    setAdminAnswerVisibility(false);
+    if (els.adminPasswordInput) els.adminPasswordInput.value = "";
+    saveState();
+    showToast("Answer key hidden");
   }
 
   function showToast(title, detail = "") {
@@ -2550,8 +2648,8 @@ window.NPPW_QUESTIONS = [
     els.scorePercent.textContent = `${percent}%`;
     els.resultHeading.textContent = passed ? "Passed the NPPW examination" : "Result below the passing mark";
     els.resultSubtext.textContent = passed
-      ? "The trainee met the required accuracy standard for this assessment."
-      : "The trainee did not reach the 90% requirement and should review the weak categories below.";
+      ? "The trainee met the required accuracy standard for this assessment. The full answer key remains admin-locked below."
+      : "The trainee did not reach the 90% requirement. Category results are shown below, while the full answer key remains admin-locked.";
     els.passFailPill.textContent = passed ? "PASS" : "FAIL";
     els.passFailPill.className = `pill ${passed ? "status-pass" : "status-fail"}`;
     els.scoreCountText.textContent = `${payload.correct_count} / ${payload.total_questions} correct`;
@@ -2575,6 +2673,8 @@ window.NPPW_QUESTIONS = [
         <div class="progress"><span style="width:${cat.accuracy}%"></span></div>
       </div>
     `).join("");
+
+    setAdminAnswerVisibility(state.adminUnlocked);
 
     els.answersList.innerHTML = QUESTIONS.map(q => {
       const selected = state.answers[q.id];
@@ -2639,6 +2739,7 @@ window.NPPW_QUESTIONS = [
     if (els.supabaseAnonKeyInput) els.supabaseAnonKeyInput.value = state.supabaseAnonKey || inlineConfig.anonKey || "";
     renderNavFilters();
     updateSidebar();
+    setAdminAnswerVisibility(state.adminUnlocked);
     if (state.submitted) {
       renderResults(createSubmissionPayload());
       activateStage("results");
@@ -2674,6 +2775,7 @@ window.NPPW_QUESTIONS = [
     state.proctorName = els.proctorName.value.trim();
     state.examMode = els.examMode.value;
     state.submissionMeta = [];
+    state.adminUnlocked = false;
     state.supabaseUrl = els.supabaseUrlInput?.value.trim() || (window.SUPABASE_CONFIG?.url || "").trim();
     state.supabaseAnonKey = els.supabaseAnonKeyInput?.value.trim() || (window.SUPABASE_CONFIG?.anonKey || "").trim();
 
@@ -2769,6 +2871,9 @@ window.NPPW_QUESTIONS = [
       if (confirm(message)) submitAttempt();
     });
     els.printBtn.addEventListener("click", () => window.print());
+    els.adminUnlockBtn?.addEventListener("click", unlockAdminReview);
+    els.adminPasswordInput?.addEventListener("keydown", (event) => { if (event.key === "Enter") unlockAdminReview(); });
+    els.adminLockBtn?.addEventListener("click", lockAdminReview);
     els.restartBtn.addEventListener("click", () => {
       if (confirm("Start a new attempt? This will clear the saved state.")) {
         localStorage.removeItem(STORAGE_KEY);
@@ -2792,6 +2897,7 @@ window.NPPW_QUESTIONS = [
   });
   renderNavFilters();
   updateSidebar();
+  setAdminAnswerVisibility(false);
 
   if (localStorage.getItem(STORAGE_KEY)) {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
